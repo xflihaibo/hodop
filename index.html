@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型检测</title>
+</head>
+<body>
+    <h1>类型检测</h1>
+    <button id='print'> 打印</button>
+</body>
+</html>
+<script language="javascript" src="./LodopFuncs.js"></script>
+<script>
+    window.onload=function(){
+      document.getElementById('print').onclick=function(argument) {
+        console.log('change..')
+
+        //LODOP.PRINT_INIT('dayin')
+        //LODOP.ADD_PRINT_BARCODE(56,48,238,62,"128Auto","123456789012"); //条码设置
+        //LODOP.SET_PRINT_STYLE("FontSize",11); //打印样式
+        // var strKName =LODOP.GET_PRINTER_NAME("0:PortName"); //获取0号设备的端口名称
+        //  console.log(strKName)
+        //LODOP.PRINT() //打印
+        
+
+
+
+        // LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_获得原始指令");
+        // LODOP.ADD_PRINT_TEXT(10,10,200,30,"普通内容");
+        // LODOP.ADD_PRINT_HTM(30,10,200,30,"<hr>普通内容<hr>");              
+        // LODOP.PREVIEW();
+
+
+
+
+        var  strPName=LODOP.GET_PRINTER_NAME(0);//获取打印名称
+         var  DriverName= LODOP.GET_PRINTER_NAME("0:DriverName")//获取O号设备的驱动名称。
+        var  PortName=LODOP.GET_PRINTER_NAME("0:PortName")// 获取O号设备的端口名称
+        console.log(strPName,DriverName,PortName)
+
+        //LODOP.WRITE_PORT_DATA(strKName,'hello world')
+        // var res=LODOP.WRITE_PORT_DATA(strPName, "^XA\n^FO50,50\n^BY3^BCN,100,Y,N,N\n^FD>;382436>6CODE39>752375152^FS\n^XZ\n");
+        // var res=LODOP.WRITE_PORT_DATA(DriverName, "^XA\n^FO50,50\n^BY3^BCN,100,Y,N,N\n^FD>;382436>6CODE39>752375152^FS\n^XZ\n");
+       //var res=LODOP.WRITE_PORT_DATA(`${PortName}`, "^XA\n^FO50,50\n^BY3^BCN,100,Y,N,N\n^FD>;382436>6CODE39>752375152^FS\n^XZ\n");
+        //LODOP.SEND_PRINT_RAWDATA("~SD30^XA^CI26^SEE:GB18030.DAT^CW1,E:SIMSUN.FNT^PW750^PON^FO50,40^A1N,30,30^FD名称:^FS^FO150,40^A1N,30,30^FD${name}^FS^FO50,75^A1N,30,30^FD编号:^FS^FO150,75^A1N,30,30^FD${code}^FS^FO150,105^BQN,2,4^FDMM,A${code}^FS^XZ");
+        LODOP.SEND_PRINT_RAWDATA(`~SD30^XA^CI26^SEE:GB18030.DAT^CW1,E:SIMSUN.FNT
+^PW750^PON
+^FO20,30^A1N,30,30^FD采血点:^FS
+^FO110,30^A1N,30,30^FD你好^FS
+^FO140,30^A1N,30,30^FD编号:^FS
+^FO200,30^A1N,30,30^FD11^FS
+^FO20,60^A1N,30,30^FD123^FS
+^FO120,90^BQN,2,4
+^FDMM,A345^FS
+^FO400,30^A1N,30,30^FD采血点:^FS
+^FO490,30^A1N,30,30^FD123^FS
+^FO520,30^A1N,30,30^FD编号:^FS
+^FO580,30^A1N,30,30^FD123^FS
+^FO400,60^A1N,30,30^FD123^FS
+^FO500,90^BQN,2,4
+^FDMM,A123^FS
+^XZ`);
+       // console.log(res)
+        
+      }
+     
+
+
+     //^XA^FO50,50^BY3^BCN,100,Y,N,N^FD>;382436>6CODE39>752375152^FS^XZ
+     var strVersion=LODOP.VERSION;
+     
+     //var iCount=LODOP.GET_PRINTER_COUNT(); //获取设备数
+     // var  strPName=LODOP.GET_PRINTER_NAME(0);//获取打印名称
+     // var  DriverName= LODOP.GET_PRINTER_NAME("0:DriverName")//获取O号设备的驱动名称。
+     // var  PortName=LODOP.GET_PRINTER_NAME("0:PortName")// 获取O号设备的端口名称
+     // console.log(strPName,DriverName,PortName)
+     // SET_PRINTER_INDEX(oIndexOrName) /设置打印设备
+     
+     LODOP.SELECT_PRINTER();//弹出界面选定某打印设备为目标输出设备
+      
+
+     //LODOP.PRINT()
+     //var strKName =LODOP.GET_PRINTER_NAME("0:PortName"); //获取0号设备的端口名称
+     //WRITE_PORT_DATA(strKName,'^XA\n^FO50,50\n^BY3^BCN,100,Y,N,N\n^FD>;382436>6CODE39>752375152^FS\n^XZ\n')//直接向端口写数据或指令。
+    // console.log(strVersion,iCount,strPName,strKName)
+    }
+</script>
